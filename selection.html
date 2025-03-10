@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="style1.css"> 
     </head>
     <body>
-        <h2 style=""> Sélectionnez les sujets qui vous intéressent </h2>
+        <div class="page">
+            <h2> Sélectionnez les sujets qui vous intéressent </h2>
             <form>
                 <div class="checkboxes">
                 
@@ -23,13 +24,15 @@
                     <div>            
                         <input type="checkbox" id="cb3" name="check3" />
                         <label for="cb3"> Choix 3 </label>
-                    </div>  
+                    </div> 
 
                     <div>                
                         <input type="checkbox" id="cb4" name="check4" />
                         <label for="cb4"> Choix 4 </label>
                     </div>
-
+                </div>
+                
+                <div class="checkboxes">
                     <div>
                         <input type="checkbox" id="cb5" name="check5" />
                         <label for="cb5"> Choix 5 </label>
@@ -49,12 +52,14 @@
                         <input type="checkbox" id="cb8" name="check8" />
                         <label for="cb8"> Choix 8 </label>
                     </div>
-                </div>
+                </div>   
 
-                <div>
-                    <button type="submit">Valider</button>
-                </div>       
             </form>
+
+            <button type="submit">Valider</button>
+
+        </div>
+        
      </body>
 
 </html>
