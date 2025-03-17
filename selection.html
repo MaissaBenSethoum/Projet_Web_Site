@@ -5,61 +5,64 @@
         <title> Projet PSE</title>
         <link rel="stylesheet" href="style1.css"> 
     </head>
-    <body>
+    <body style="background-image: url('img/FondAcc.png');">
         <div class="page">
             <h2> Sélectionnez les sujets qui vous intéressent </h2>
             <form>
                 <div class="checkboxes">
                 
-                    <div>
+                    <div class="cases">
                         <input type="checkbox" id="cb1" name="check1" />
-                        <label for="cb1"> Choix 1</label>
+                        <label for="cb1"> <img id="cineIMG" src="img/cinema.png">  <h3>Cinema</h3> </label>
                     </div>
 
-                    <div>
+                    <div class="cases">
                         <input type="checkbox" id="cb2" name="check2" />
-                        <label for="cb2"> Choix 2 </label>
+                        <label for="cb2"> <img id="historyIMG" src="img/history.png"> <h3> Histoire </h3></label>
                     </div>
 
-                    <div>            
+                    <div class="cases">            
                         <input type="checkbox" id="cb3" name="check3" />
-                        <label for="cb3"> Choix 3 </label>
+                        <label for="cb3"> <img id="politicsIMG" src="img/museum.png"> <h3> Politique</h3> </label>
                     </div> 
 
-                    <div>                
+                    <div class="cases">                
                         <input type="checkbox" id="cb4" name="check4" />
-                        <label for="cb4"> Choix 4 </label>
+                        <label for="cb4"> <img id="musicIMG" src="img/music.png"> <h3> Musique</h3> </label>
                     </div>
                 </div>
                 
                 <div class="checkboxes">
-                    <div>
+                    <div class="cases">
                         <input type="checkbox" id="cb5" name="check5" />
-                        <label for="cb5"> Choix 5 </label>
+                        <label for="cb5"> <img id="ecologyIMG" src="img/planet-earth.png"> <h3> Ecologie</h3> </label>
                     </div>
 
-                    <div>
+                    <div class="cases">
                         <input type="checkbox" id="cb6" name="check6" />
-                        <label for="cb6"> Choix 6 </label>
+                        <label for="cb6"> <img id="fdIMG" src="img/satisfaction.png"> <h3> Faits divers</h3> </label>
                     </div>
 
-                    <div>
+                    <div class="cases">
                         <input type="checkbox" id="cb7" name="check7" />
-                        <label for="cb7"> Choix 7 </label>
+                        <label for="cb7"> <img id="sportIMG" src="img/sport.png"><h3> Sports</h3> </label>
                     </div>
 
-                    <div>
+                    <div class="cases">
                         <input type="checkbox" id="cb8" name="check8" />
-                        <label for="cb8"> Choix 8 </label>
+                        <label for="cb8"> <img id="videogamesIMG" src="img/streaming.png"> <h3>Jeux-vidéo</h3> </label>
                     </div>
                 </div>   
 
             </form>
 
-            <button type="submit">Valider</button>
+            
+            <button id="valid" type="submit">Valider</button>
 
         </div>
         
      </body>
 
 </html>
+
+<!-- ajouter action apres clique sur bouton -->
