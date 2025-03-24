@@ -50,3 +50,17 @@ img{
     background: rgb(0, 162, 16);
     color:rgb(255, 255, 255);
 }
+
+label:before {
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
+    position: absolute;
+    z-index: 100;
+}
+
+:checked+label:before {
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
+}
+  
+input[type=checkbox] {
+    display: none;
+}

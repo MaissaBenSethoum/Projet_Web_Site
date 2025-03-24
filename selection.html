@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
         <title> Projet PSE</title>
         <link rel="stylesheet" href="style1.css"> 
     </head>
+
     <body style="background-image: url('img/FondAcc.png');">
         <div class="page">
             <h2> Sélectionnez les sujets qui vous intéressent </h2>
@@ -61,7 +63,26 @@
 
         </div>
         
-     </body>
+    </body>
+    <script>
+        document.getElementById('valid').addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            const results = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                           .map(checkbox => {
+                               // Correction : utiliser nextElementSibling au lieu de closest()
+                               const label = checkbox.nextElementSibling;
+                               const labelText = label.querySelector('h3').textContent;
+                               return labelText.trim();
+                           });
+
+            console.log('Résultats :', results);
+            
+            if(results.length === 0) {
+                console.warn("Aucune case cochée !");
+            }
+        });
+    </script>
 
 </html>
 
