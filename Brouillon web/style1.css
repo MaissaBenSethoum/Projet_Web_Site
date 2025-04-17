@@ -1,0 +1,62 @@
+body {
+    background-color: #706f6f;
+}
+
+.page{
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    place-items: center;
+    justify-content: center;
+    font-family: Arial;
+}
+
+.checkboxes{
+    display: grid;
+    margin-left: 80px;
+    grid-template-columns:1fr 1fr 1fr 1fr; 
+    place-items: center;
+    justify-content: center;
+
+}
+
+img{
+    max-width: 250px;
+    height: auto;
+}
+
+.cases{
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;  
+    place-items: center;
+    justify-content: center;
+}
+
+#valid{
+    background-color:rgb(32, 30, 30);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 25px; 
+    padding: 15px 30px; 
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#valid:hover{
+    background: rgb(0, 162, 16);
+    color:rgb(255, 255, 255);
+}
+
+label:before {
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
+    position: absolute;
+    z-index: 100;
+}
+
+:checked+label:before {
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
+}
+  
+input[type=checkbox] {
+    display: none;
+}
