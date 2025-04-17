@@ -1,5 +1,36 @@
-body{
-    display: grid;
-    grid-template-columns:auto auto auto;
-
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: white;
 }
+
+.separation {
+    display: flex;
+    height: 100vh;
+}
+
+.gauche {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height:100vh;
+    padding: 20px;
+    border-right: 2px solid black;
+    z-index: 10;
+}
+
+.milieu {
+    margin-left: 20%;
+    margin-right: 30%;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100vh
+}
+
+.droite {
+    width: 30%;
+    padding: 20px;
+}
+
+
