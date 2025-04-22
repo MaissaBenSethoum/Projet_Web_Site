@@ -39,3 +39,66 @@ function fetchNews(api, category) {
     })
     .catch(error => console.error('Erreur:', error));
 }
+
+function getThemes(){
+    let url = window.location.href;
+    let params = url.split('?')[1];
+    let results = params.split('=')[1];
+    results = decodeURIComponent(results);
+    results = JSON.parse(results);
+    results.sort()
+    return results;
+}
+
+function renderThemes(themeList, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = ""; // Vide le conteneur actuel
+
+  themeList.forEach(theme => {
+      const p = document.createElement("p");
+      p.textContent = theme;
+      container.appendChild(p);
+  });
+}
+
+const default_articles = [
+  {
+    titre: "Municipales 2026 : la Métropole du Grand Paris, enjeu de l’élection dans la capitale",
+    image: "img/image_test_1.avif",
+    contenu: "Plusieurs candidats de gauche font de ce sujet un axe de leur campagne. Mais une réelle réforme de cette entité ne pourra se faire qu’à condition de s’attaquer au millefeuille qui la caractérise.",
+    lien: "details.html"
+  },
+  {
+    titre: "Déserts médicaux : « S’il faut réussir un entretien d’embauche pour avoir un médecin, c’est grave »",
+    image: "img/image_test_2.avif",
+    contenu: "Alors qu’une proposition de loi examinée à l’Assemblée nationale début avril fait polémique, des patients témoignent de leurs « parcours du combattant » pour trouver un rendez-vous.",
+    lien: "details.html"
+  },
+];
+
+function genererArticles(articles) {
+  const container = document.getElementById("actu-box");
+  
+  articles.forEach(article => {
+    const div = document.createElement("div");
+    div.className = "boite-actu";
+    div.onclick = () => location.href = article.lien;
+
+    div.innerHTML = `
+      <div class="titre-actu">${article.titre}</div>
+      <div class="contenu-actu">
+        <img src="${article.image}" alt="Image Actu">
+        <div class="texte-actu">
+          <p>${article.contenu}</p>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+window.onload = function () {
+  renderThemes(getThemes(), "selected-themes");
+  genererArticles(default_articles);
+};
