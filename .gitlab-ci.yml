@@ -1,10 +1,10 @@
 pages:
   stage: deploy
   script:
-    - mkdir public
-    - cp -r * public
+    - mkdir .public
+    - cp -r * .public
   artifacts:
     paths:
-      - public
+      - .public
   only:
-    - main  # ou "master" selon ta branche principale
+    - main  # ou "master" selon ton nom de branche
