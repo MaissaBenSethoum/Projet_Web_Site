@@ -1,7 +1,7 @@
 const apiKeys = {
-  GNews : 'dc8057f74829e278c4315620a1f34152',
-  NewsApi : '05a51c4881be4d958caeceedbba249b0',
-  MediaStack : 'a1287d0b6ba7986889b68f62f3203971',
+  GNews : 'f83f3ede3b6ee1437808418ef24b56f9',
+  NewsApi : '835296e4109c467daf3a7e1ea689d008',
+  MediaStack : '4c9226abb55dd64bb44f101e84c0ec19',
 };
 
 const apiUrls = {
