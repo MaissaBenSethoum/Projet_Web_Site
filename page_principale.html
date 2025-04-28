@@ -1,14 +1,49 @@
+<!DOCTYPE html>
 <html>
 <head>    
     <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
     <title> Projet PSE</title>
-    <link rel="stylesheet" href="style2.css"> 
+    <link rel="stylesheet" href="style2.css">
+    <script src="scriptTest.js"></script> 
 </head>
 <body>
-    <div class="separation">
-        <div class="Gauche"></div>
-        <div class="Milieu"></div>
-        <div class="Droite"></div>
+    <!-- Gauche -->
+    <div class="gauche">
+      <img src="img/logo.png" alt="Logo" class="logo">
+      
+      <div class="icone-texte-2">
+        <img src="img/icone_case_cochee.png" alt="Icône 1" class="icone-img">
+        <p>Les choix que vous avez sélectionnés :</p>
+      </div>
+      
+      <div class="choix" id="selected-themes"></div> <!-- Cette div sera remplie par le script JavaScript -->
+
+      <div class="icone-texte">
+        <img src="img/icone_parametre.png" alt="Icône 2" class="icone-img">
+        <a href="selection.html" style="color: white; text-decoration: underline;">Changer la sélection</a>
+      </div>
     </div>
-</body>
+  
+    <!-- Centre -->
+    <div class="centre" id="actu-box"></div> <!-- Cette div sera remplie par le script JavaScript -->
+  
+    <!-- Droite -->
+    <div class="droite">
+      <div class="icone-texte">
+        <img src="img/icone_loupe.png" alt="Icône 3" class="icone-img">
+        <p>Ce qui peut vous intéresser :</p>
+      </div>
+      <div class="choix">
+        <p>Jeux-vidéo, Cinéma</p>
+      </div>
+      <div class="aperçu-actu">
+        <div class="titre-actu">« Les plateformes américaines devaient tuer le cinéma français. Elles contribuent à le sauver »</div>
+        <p>Netflix, Amazon et Disney jouent le jeu, en investissant dans le financement du cinéma français. Canal+, de son côté, grand argentier du cinéma, devrait réduire la voilure, observe Michel Guerrin, rédacteur en chef au « Monde », dans sa chronique.</p>
+      </div>
+      <div class="aperçu-actu">
+        <div class="titre-actu">« Pokémon Go » : Niantic revend sa division « jeux vidéo » au studio Scopely pour 3,5 milliards de dollars</div>
+        <p>« Pokémon Go » : Niantic revend sa division « jeux vidéo » au studio Scopely pour 3,5 milliards de dollars.</p>
+      </div>
+    </div>
+  </body>
 </html>

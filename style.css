@@ -4,13 +4,9 @@
     gap: 20px; 
     align-items: center; 
     font-family: Playfair Display;
-    
-    
 }
 
-
 #logoAcc{
-    border: 2px solid rgb(255, 0, 0);
     border-radius: 10px;
     max-width: 100px;
     height: auto;
@@ -21,24 +17,20 @@
     grid-template-columns:1fr 1fr; 
     gap: 20px; 
     align-items: center; 
-    font-family: Playfair Display;
-
+    font-family: Arial;
 }
-
 
 #websitescreen{
     border: 2px solid black;
     border-radius: 10px;
     max-width: 1000px;
-    height: auto;
+    height: 550px; 
     align-self: flex-end; 
     margin-top: auto; 
-    padding-top: 80px; 
     box-sizing: border-box; 
     object-fit: contain; 
     background: white; 
 }
-
 
 .loginSec{
     display: grid;
@@ -52,7 +44,6 @@
     max-width: 400px;
     margin: 0 auto;
     gap: 15px; 
-   
 }
 
 #Login, #Signup {
@@ -70,4 +61,3 @@
     background: #000000;
     color:rgb(255, 255, 255);
 }
-
