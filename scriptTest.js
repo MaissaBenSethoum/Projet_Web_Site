@@ -1,7 +1,7 @@
 const apiKeys = {
-  GNews : 'dc8057f74829e278c4315620a1f34152',
-  NewsApi : '05a51c4881be4d958caeceedbba249b0',
-  MediaStack : 'a1287d0b6ba7986889b68f62f3203971',
+  GNews : 'f83f3ede3b6ee1437808418ef24b56f9',
+  NewsApi : '835296e4109c467daf3a7e1ea689d008',
+  MediaStack : '4c9226abb55dd64bb44f101e84c0ec19',
 };
 
 const apiUrls = {
@@ -128,6 +128,43 @@ function fetchArticlesForThemes(selectedThemes) {
 
     genererArticles(allArticles);
   });
+}
+
+function themeNonChoisieAleatoire(selectedThemes) {
+  const allThemes = Object.values(themeMap);
+  const unselected = allThemes.filter(theme => !selectedThemes.includes(theme));
+  if (unselected.length === 0){
+    return Object.values(themeMap)[Math.floor(Math.random() * Object.values(themeMap).length)];
+  };
+  return unselected[Math.floor(Math.random() * unselected.length)];
+}
+
+function updateSidebarWithTheme(theme_name, article) {
+  const sidebar = document.querySelector(".droite");
+  sidebar.innerHTML = ""; // Nettoie la sidebar
+
+  // Titre de section
+  const titreSection = document.createElement("div");
+  titreSection.className = "section-titre";
+  titreSection.innerText = `Ce qui peut vous intéresser en ${theme_name}`;
+  sidebar.appendChild(titreSection);
+
+  // Contenu de l'article
+  const apercuActu = document.createElement("div");
+  apercuActu.className = "aperçu-actu";
+
+  apercuActu.innerHTML = `
+    <div class="titre-actu">${article.titre || article.title}</div>
+    <div class="contenu-actu">
+      <img src="${article.image || article.urlToImage || 'https://via.placeholder.com/250x170'}" alt="Image">
+      <div class="texte-actu">
+        <p>${article.contenu || article.description || "Aucune description disponible."}</p>
+        <a href="${article.url}" target="_blank">Lire l'article</a>
+      </div>
+    </div>
+  `;
+
+  sidebar.appendChild(apercuActu);
 }
 
 function themeNonChoisieAleatoire(selectedThemes) {
