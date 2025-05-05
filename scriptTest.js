@@ -165,46 +165,6 @@ function updateSidebarWithTheme(theme_name, article) {
   `;
 
   sidebar.appendChild(apercuActu);
-<<<<<<< HEAD
-=======
-}
-
-function themeNonChoisieAleatoire(selectedThemes) {
-  const allThemes = Object.values(themeMap);
-  const unselected = allThemes.filter(theme => !selectedThemes.includes(theme));
-  if (unselected.length === 0){
-    return Object.values(themeMap)[Math.floor(Math.random() * Object.values(themeMap).length)];
-  };
-  return unselected[Math.floor(Math.random() * unselected.length)];
-}
-
-function updateSidebarWithTheme(theme_name, article) {
-  const sidebar = document.querySelector(".droite");
-  sidebar.innerHTML = ""; // Nettoie la sidebar
-
-  // Titre de section
-  const titreSection = document.createElement("div");
-  titreSection.className = "section-titre";
-  titreSection.innerText = `Ce qui peut vous intéresser en ${theme_name}`;
-  sidebar.appendChild(titreSection);
-
-  // Contenu de l'article
-  const apercuActu = document.createElement("div");
-  apercuActu.className = "aperçu-actu";
-
-  apercuActu.innerHTML = `
-    <div class="titre-actu">${article.titre || article.title}</div>
-    <div class="contenu-actu">
-      <img src="${article.image || article.urlToImage || 'https://via.placeholder.com/250x170'}" alt="Image">
-      <div class="texte-actu">
-        <p>${article.contenu || article.description || "Aucune description disponible."}</p>
-        <a href="${article.url}" target="_blank">Lire l'article</a>
-      </div>
-    </div>
-  `;
-
-  sidebar.appendChild(apercuActu);
->>>>>>> a2ed4294f037bbda32402f173ca4a9285a642d6b
 }
 
 window.onload = function () {
