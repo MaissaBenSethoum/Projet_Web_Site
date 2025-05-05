@@ -6,8 +6,19 @@ const apiKeys = {
 
 const apiUrls = {
   GNews: (category, apiKey) => `https://gnews.io/api/v4/search?q=${category}&lang=fr&max=3&token=${apiKey}`,
-  NewsApi: (category, apiKey) => `https://newsapi.org/v2/top-headlines?q=${category}&language=fr&pageSize=3&apiKey=${apiKey}`,
+  NewsApi: (category, apiKey) => `https://newsapi.org/v2/top-headlines?q=${category}&language=fr&pageSize=1&apiKey=${apiKey}`,
   MediaStack: (category, apiKey) => `http://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${category}&languages=fr&sortBy=popularity&limit=3`
+};
+
+const themeMap = {
+  cb1: "Cinema",
+  cb2: "Histoire",
+  cb3: "Politique",
+  cb4: "Musique",
+  cb5: "Écologie",
+  cb6: "Faits divers",
+  cb7: "Sports",
+  cb8: "Jeux vidéo"
 };
 
 function fetchNews(api, category) {
@@ -23,11 +34,11 @@ function fetchNews(api, category) {
         articles = data.data || []; 
       }
       console.log(data);
-      return articles;  
+      return articles.map(article => ({ ...article, theme: category }));
     })
     .catch(error => {
-      console.error('Erreur:', error);
-      return []; 
+      console.error(`Erreur avec ${api} pour ${category} :`, error);
+      return [];
     });
 }
 
@@ -61,13 +72,19 @@ function genererArticles(articles) {
     div.className = "boite-actu";
     div.onclick = () => location.href = article.lien || '#';
 
+    const theme = article.theme || 'default';
+    const themeClean = theme.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_");
+    const fallbackImage = `img/${themeClean}.png`;
+
     div.innerHTML = `
-      <div class="titre-actu">${article.titre || article.title}</div>
-      <div class="contenu-actu">
-        <img src="${article.image || article.urlToImage || 'https://via.placeholder.com/300'}" alt="Image Actu">
-        <div class="texte-actu">
-          <p>${article.contenu || article.description || 'Pas de description disponible.'}</p>
-          <a href="${article.url}" target="_blank">Lire l'article</a>  <!-- Lien vers l'article -->
+       <div class="titre-actu">${article.titre || article.title}</div>
+       <div class="contenu-actu">
+         <img src="${article.image || article.urlToImage}" 
+               onerror="this.onerror=null;this.src='${fallbackImage}'" 
+               alt="Image Actu">
+         <div class="texte-actu">
+            <p>${article.contenu || article.description || 'Pas de description disponible.'}</p>
+            <a href="${article.url}" target="_blank">Lire l'article</a>  <!-- Lien vers l'article -->
         </div>
       </div>
     `;
@@ -91,19 +108,63 @@ const default_articles = [
 ];
 
 function fetchArticlesForThemes(selectedThemes) {
-  let allArticles = [];
-  
+  let fetchPromises = [];
+
   selectedThemes.forEach(theme => {
     ['GNews', 'NewsApi', 'MediaStack'].forEach(api => {
-      fetchNews(api, theme) 
-        .then(articles => {
-          if (articles.length > 0) {
-            allArticles = [...allArticles, ...articles];
-            genererArticles(allArticles);
-          }
-        });
+      fetchPromises.push(fetchNews(api, theme));
     });
   });
+
+  Promise.all(fetchPromises).then(results => {
+    const seenTitles = new Set();
+    const allArticles = results.flat().filter(article => {
+      const title = (article.title || article.titre || '').trim().toLowerCase();
+
+      if (!title || seenTitles.has(title)) return false;
+      seenTitles.add(title);
+      return true;
+    });
+
+    genererArticles(allArticles);
+  });
+}
+
+function themeNonChoisieAleatoire(selectedThemes) {
+  const allThemes = Object.values(themeMap);
+  const unselected = allThemes.filter(theme => !selectedThemes.includes(theme));
+  if (unselected.length === 0){
+    return Object.values(themeMap)[Math.floor(Math.random() * Object.values(themeMap).length)];
+  };
+  return unselected[Math.floor(Math.random() * unselected.length)];
+}
+
+function updateSidebarWithTheme(theme_name, article) {
+  const sidebar = document.querySelector(".droite");
+  sidebar.innerHTML = ""; // Nettoie la sidebar
+
+  // Titre de section
+  const titreSection = document.createElement("div");
+  titreSection.className = "section-titre";
+  titreSection.innerText = `Ce qui peut vous intéresser en ${theme_name}`;
+  sidebar.appendChild(titreSection);
+
+  // Contenu de l'article
+  const apercuActu = document.createElement("div");
+  apercuActu.className = "aperçu-actu";
+
+  apercuActu.innerHTML = `
+    <div class="titre-actu">${article.titre || article.title}</div>
+    <div class="contenu-actu">
+      <img src="${article.image || article.urlToImage || 'https://via.placeholder.com/250x170'}" alt="Image">
+      <div class="texte-actu">
+        <p>${article.contenu || article.description || "Aucune description disponible."}</p>
+        <a href="${article.url}" target="_blank">Lire l'article</a>
+      </div>
+    </div>
+  `;
+
+  sidebar.appendChild(apercuActu);
 }
 
 window.onload = function () {
