@@ -5,7 +5,7 @@ const apiKeys = {
 };
 
 const apiUrls = {
-  GNews: (category, apiKey) => `https://gnews.io/api/v4/search?q=${category}&lang=fr&max=3&token=${apiKey}`,
+  GNews: (category, apiKey) => `https://gnews.io/api/v4/search?q=${category}&lang=fr&max=5&token=${apiKey}`,
   NewsApi: (category, apiKey) => `https://newsapi.org/v2/top-headlines?q=${category}&language=fr&pageSize=1&apiKey=${apiKey}`,
   MediaStack: (category, apiKey) => `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${category}&languages=fr&sortBy=popularity&limit=3`
 };
