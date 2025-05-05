@@ -15,7 +15,7 @@ const themeMap = {
   cb2: "Histoire",
   cb3: "Politique",
   cb4: "Musique",
-  cb5: "Écologie",
+  cb5: "Ecologie",
   cb6: "Faits divers",
   cb7: "Sports",
   cb8: "Jeux vidéo"
@@ -117,41 +117,61 @@ function fetchArticlesForThemes(selectedThemes) {
   });
 }
 
-function themeNonChoisieAleatoire(selectedThemes) {
+function themesNonChoisieAleatoire(selectedThemes) {
   const allThemes = Object.values(themeMap);
   const unselected = allThemes.filter(theme => !selectedThemes.includes(theme));
-  if (unselected.length === 0){
-    return Object.values(themeMap)[Math.floor(Math.random() * Object.values(themeMap).length)];
-  };
-  return unselected[Math.floor(Math.random() * unselected.length)];
+
+  // Cas 1 : Aucun thème non sélectionné → renvoyer deux thèmes aléatoires parmi tous
+  if (unselected.length === 0) {
+    console.log("Aucun thème non sélectionné, on en prend deux au hasard parmi tous les thèmes.");
+    const shuffled = allThemes.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 2);
+  }
+
+  // Cas 2 : Un seul thème non sélectionné → en prendre un autre dans les sélectionnés
+  if (unselected.length === 1) {
+    console.log("Un seul thème non sélectionné, on en prend un autre dans les sélectionnés.");
+    const other = selectedThemes[Math.floor(Math.random() * selectedThemes.length)];
+    return [unselected[0], other];
+  }
+
+  // Cas 3 : Deux ou plus non sélectionnés → en prendre deux parmi ceux-là
+  console.log("Deux ou plus non sélectionnés, on en prend deux parmi ceux-là.");
+  const shuffled = unselected.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 2);
 }
 
-function updateSidebarWithTheme(theme_name, article) {
-  const sidebar = document.querySelector(".droite");
+function updateSidebarWithTheme(theme_name, articles) {
+  const sidebar = document.querySelector(".choix_d");
   sidebar.innerHTML = ""; // Nettoie la sidebar
 
   // Titre de section
   const titreSection = document.createElement("div");
-  titreSection.className = "section-titre";
-  titreSection.innerText = `Ce qui peut vous intéresser en ${theme_name}`;
+  titreSection.className = "choix_d";
+  titreSection.innerHTML = `<p>${theme_name[0]}, ${theme_name[1]}</p>`;
   sidebar.appendChild(titreSection);
 
-  // Contenu de l'article
-  const apercuActu = document.createElement("div");
-  apercuActu.className = "aperçu-actu";
+  const sidebar_2 = document.querySelector(".articles");
+  sidebar_2.innerHTML = ""; // Nettoie la sidebar
 
-  apercuActu.innerHTML = `
-    <div class="titre-actu">${article.titre || article.title}</div>
-    <div class="contenu-actu">
-      <img src="${article.image || article.urlToImage || 'https://via.placeholder.com/250x170'}" alt="Image">
-      <div class="texte-actu">
-        <p>${article.contenu || article.description || "Aucune description disponible."}</p>
-        <a href="${article.url}" target="_blank">Lire l'article</a>
+  articles.forEach(article => {
+    // Contenu de l'article
+    const apercuActu = document.createElement("div");
+    apercuActu.className = "aperçu-actu";
+
+    apercuActu.innerHTML = `
+      <div class="titre-actu">${article.titre}</div>
+      <div class="contenu_side-actu">
+        <div class="texte-actu">
+          <p>${article.contenu || article.description || "Aucune description disponible."}</p>
+          <a href="${article.lien}" target="_blank">Lire l'article</a>
+        </div>
       </div>
-    </div>
-  `;
+    `;
 
-  sidebar.appendChild(apercuActu);
+    sidebar_2.appendChild(apercuActu);
+
+    });
 }
 
 window.onload = function () {
