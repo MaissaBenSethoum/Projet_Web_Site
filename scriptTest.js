@@ -12,7 +12,7 @@ const apiUrls = {
 
 const themeMap = {
   cb1: "Cinema",
-  cb2: "Histoire",
+  cb2: "Technologie",
   cb3: "Politique",
   cb4: "Musique",
   cb5: "Écologie",
