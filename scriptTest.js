@@ -155,22 +155,22 @@ function themesNonChoisieAleatoire(selectedThemes) {
   const allThemes = Object.values(themeMap);
   const unselected = allThemes.filter(theme => !selectedThemes.includes(theme));
 
-  // Cas 1 : Aucun thÃ¨me non sÃ©lectionnÃ© â†’ renvoyer deux thÃ¨mes alÃ©atoires parmi tous
+  // Cas 1 : Aucun thème non sélectionné → renvoyer deux thèmes aléatoires parmi tous
   if (unselected.length === 0) {
-    console.log("Aucun thÃ¨me non sÃ©lectionnÃ©, on en prend deux au hasard parmi tous les thÃ¨mes.");
+    console.log("Aucun thème non sélectionné, on en prend deux au hasard parmi tous les thèmes.");
     const shuffled = allThemes.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 2);
   }
 
-  // Cas 2 : Un seul thÃ¨me non sÃ©lectionnÃ© â†’ en prendre un autre dans les sÃ©lectionnÃ©s
+  // Cas 2 : Un seul thème non sélectionné → en prendre un autre dans les sélectionnés
   if (unselected.length === 1) {
-    console.log("Un seul thÃ¨me non sÃ©lectionnÃ©, on en prend un autre dans les sÃ©lectionnÃ©s.");
+    console.log("Un seul thème non sélectionné, on en prend un autre dans les sélectionnés.");
     const other = selectedThemes[Math.floor(Math.random() * selectedThemes.length)];
     return [unselected[0], other];
   }
 
-  // Cas 3 : Deux ou plus non sÃ©lectionnÃ©s â†’ en prendre deux parmi ceux-lÃ 
-  console.log("Deux ou plus non sÃ©lectionnÃ©s, on en prend deux parmi ceux-lÃ .");
+  // Cas 3 : Deux ou plus non sélectionnés → en prendre deux parmi ceux-là
+  console.log("Deux ou plus non sélectionnés, on en prend deux parmi ceux-là.");
   const shuffled = unselected.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, 2);
 }
@@ -191,7 +191,7 @@ function updateSidebarWithTheme(theme_name, articles) {
   articles.forEach(article => {
     // Contenu de l'article
     const apercuActu = document.createElement("div");
-    apercuActu.className = "aperÃ§u-actu";
+    apercuActu.className = "aperçu-actu";
 
     apercuActu.innerHTML = `
       <div class="titre-actu">${article.titre}</div>
@@ -213,6 +213,9 @@ window.onload = function () {
   renderThemes(selectedThemes, "selected-themes");
   fetchArticlesForThemes(selectedThemes);
 };
+
+
+
 
 
 
