@@ -1,62 +1,61 @@
 body {
-    background-color: #e4e1e1;
+    background-color: #e4e1e1; /* Couleur de fond */
 }
 
-.page{
-    display: grid;
-    grid-template-rows: auto auto auto auto;
-    place-items: center;
-    justify-content: center;
-    font-family: Arial;
+.page{ 
+    display: grid; /* Grille pour la page */
+    grid-template-rows: auto auto auto auto; /* Quatre lignes */
+    place-items: center; /* Centrer le contenu */
+    justify-content: center; /* Justifier le contenu */
+    font-family: Arial; /* Police de caractères */
 }
 
 .checkboxes{
-    display: grid;
-    margin-left: 80px;
-    grid-template-columns:1fr 1fr 1fr 1fr; 
-    place-items: center;
-    justify-content: center;
-
+    display: grid; /* Grille pour les cases à cocher */
+    margin-left: 80px; /* Marge à gauche */
+    grid-template-columns:1fr 1fr 1fr 1fr; /* Quatre colonnes */
+    place-items: center; /* Centrer le contenu */
+    justify-content: center; /* Justifier le contenu */
 }
 
 img{
-    max-width: 250px;
-    height: auto;
+    max-width: 250px; /* Largeur maximale de l'image */
+    height: auto; /* Hauteur automatique */
 }
 
 .cases{
-    display: grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;  
-    place-items: center;
-    justify-content: center;
+    display: grid; /* Grille pour les cases */
+    grid-template-columns:1fr 1fr 1fr 1fr; /* Division en quatre colonnes */
+    place-items: center; /* Centrer le contenu */
+    justify-content: center; /* Justifier le contenu */
 }
 
 #valid{
-    background-color:rgb(32, 30, 30);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 25px; 
-    padding: 15px 30px; 
-    font-size: 1.5em;
-    cursor: pointer;
-    transition: background 0.3s;
+    background-color:rgb(32, 30, 30); /* Couleur de fond */
+    color: rgb(255, 255, 255); /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 25px; /* Coins arrondis */
+    padding: 15px 30px; /* Espacement intérieur */
+    font-size: 1.5em; /* Taille de la police */
+    cursor: pointer; /* Curseur en forme de main */ 
+    transition: background 0.3s; /* Transition pour l'arrière-plan */
 }
 
 #valid:hover{
-    background: rgb(0, 162, 16);
-    color:rgb(255, 255, 255);
+    background: rgb(0, 162, 16); /* Couleur de fond quand on met le curseur */
+    color:rgb(255, 255, 255); /* Couleur du texte quand on met le curseur */
 }
 
 label:before {
-    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
-    position: absolute;
-    z-index: 100;
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png"); /* Affiche une image de case non cochée */
+    position: absolute; /* Position */
+    z-index: 100; /* Place l'image au-dessus des autres éléments */
 }
 
 :checked+label:before {
-    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");/* Remplace l'image par celle de la case cochée */
 }
   
 input[type=checkbox] {
-    display: none;
+    display: none; /* Cache complètement la case à cocher standard du navigateur */
 }

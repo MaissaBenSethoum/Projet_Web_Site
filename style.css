@@ -1,63 +1,63 @@
 .PageHeader{
-    display: grid;
-    grid-template-columns:auto 1fr; 
-    gap: 20px; 
-    align-items: center; 
-    font-family: Playfair Display;
+    display: grid; /* Utilise le modèle de grille CSS pour organiser les éléments */
+    grid-template-columns:auto 1fr; /* Définit deux colonnes : une pour le logo et une pour le texte */
+    gap: 20px; /* Espace entre les colonnes */
+    align-items: center; /* Aligne les éléments au centre verticalement */
+    font-family: Playfair Display; /* Police de caractères */
 }
 
 #logoAcc{
-    border-radius: 10px;
-    max-width: 100px;
-    height: auto;
+    border-radius: 10px; /* Arrondit les coins de l'image */
+    max-width: 100px; /* Largeur maximale de l'image */
+    height: auto; /* Hauteur automatique pour maintenir le ratio d'aspect */
 }
 
 .homepage{
-    display: grid;
-    grid-template-columns:1fr 1fr; 
-    gap: 20px; 
-    align-items: center; 
-    font-family: Arial;
+    display: grid; /* Utilise le modèle de grille CSS pour organiser les éléments */
+    grid-template-columns:1fr 1fr; /* Définit deux colonnes */
+    gap: 20px; /* Espace entre les colonnes */
+    align-items: center; /* Aligne les éléments au centre verticalement */
+    font-family: Arial; /* Police de caractères */
 }
 
 #websitescreen{
-    border: 2px solid black;
-    border-radius: 10px;
-    max-width: 1000px;
-    height: 550px; 
-    align-self: flex-end; 
-    margin-top: auto; 
-    box-sizing: border-box; 
-    object-fit: contain; 
-    background: white; 
+    border: 2px solid black; /* Bordure noire autour de l'image */
+    border-radius: 10px; /* Arrondit les coins de l'image */
+    max-width: 1000px; /* Largeur maximale de l'image */
+    height: 550px; /* Hauteur fixe de l'image */ 
+    align-self: flex-end; /* Aligne l'image à la fin de la grille */
+    margin-top: auto; /* Marge supérieure automatique pour centrer l'image verticalement */
+    box-sizing: border-box; /* Inclut la bordure dans le calcul de la largeur et de la hauteur */ 
+    object-fit: contain; /* Ajuste l'image pour qu'elle s'adapte à son conteneur sans déformer le ratio d'aspect */ 
+    background: white; /* Couleur de fond blanche */
 }
 
 .loginSec{
-    display: grid;
-    place-items: center;
-    justify-content: center;
-    background-color:rgb(32, 30, 30); 
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    width: 90%;
-    max-width: 400px;
-    margin: 0 auto;
-    gap: 15px; 
+    display: grid; /* Grille pour la section d'incription/connection */
+    place-items: center; /* Centre le contenu dans la grille */
+    justify-content: center; /* Justifie le contenu au centre */
+    background-color:rgb(32, 30, 30); /* Couleur de fond */
+    padding: 30px; /* Espacement intérieur */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; /* Ombre */
+    width: 90%; /* Largeur de la section */
+    max-width: 400px; /* Largeur maximale de la section */
+    margin: 0 auto; /* Centre la section horizontalement */
+    gap: 15px; /* Espace entre les éléments */
 }
 
 #Login, #Signup {
-    background-color:rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 25px; 
-    padding: 15px 30px; 
-    font-size: 1em;
-    cursor: pointer;
-    transition: background 0.3s;
+    background-color:rgb(255, 255, 255); /* Couleur de fond */
+    color: rgb(0, 0, 0); /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 25px; /* Coins arrondis */
+    padding: 15px 30px; /* Espacement intérieur */
+    font-size: 1em; /* Taille de la police */
+    cursor: pointer; /* Curseur en forme de main */
+    transition: background 0.3s; /* Transition pour l'arrière-plan */
 }
 
 #Login:hover, #Signup:hover {
-    background: #000000;
-    color:rgb(255, 255, 255);
+    background: #000000; /* Couleur de fond quand on met le curseur */
+    color:rgb(255, 255, 255); /* Couleur du texte quand on met le curseur */
 }
