@@ -11,7 +11,7 @@ body {
 }
 
 .checkboxes{
-    display: grid; /* Grille pour les cases à cocher */
+    display: flex; /* Organisation des cases */
     margin-left: 80px; /* Marge à gauche */
     grid-template-columns:1fr 1fr 1fr 1fr; /* Quatre colonnes */
     place-items: center; /* Centrer le contenu */
