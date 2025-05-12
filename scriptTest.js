@@ -107,6 +107,14 @@ const default_articles = [
   }
 ];
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 
 function fetchArticlesForThemes(selectedThemes) {
   let fetchPromises = [];
@@ -119,12 +127,14 @@ function fetchArticlesForThemes(selectedThemes) {
 
   Promise.all(fetchPromises).then(results => {
     const seenTitles = new Set();
-    const allArticles = results.flat().filter(article => {
+    let allArticles = results.flat().filter(article => {
       const title = (article.title || article.titre || '').trim().toLowerCase();
       if (!title || seenTitles.has(title)) return false;
       seenTitles.add(title);
       return true;
-    });
+    });   
+
+    allArticles = shuffleArray(allArticles); 
 
     genererArticles(allArticles);
 
