@@ -151,7 +151,10 @@ function fetchArticlesForThemes(selectedThemes) {
   });
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d99d7ecb6e27f2b1407c7cd9469cff0a87d71988
 function themesNonChoisieAleatoire(selectedThemes) {
   const allThemes = Object.values(themeMap);
   const unselected = allThemes.filter(theme => !selectedThemes.includes(theme));

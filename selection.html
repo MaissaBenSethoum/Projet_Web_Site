@@ -2,73 +2,72 @@
 <html>
 
     <head>
-        <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
-        <title> Projet PSE</title>
-        <link rel="stylesheet" href="style1.css"> 
-        <script src="selection.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'> <!-- Police: Playfair Display-->
+        <title> Projet PSE</title> <!-- Titre de la page -->
+        <link rel="stylesheet" href="style1.css"> <!-- Feuille de style CSS -->
+        <script src="selection.js"></script> <!-- Fichier JavaScript -->
     </head>
 
     <body>
-    <div class="page">
-        <h2> Sélectionnez les sujets qui vous intéressent </h2>
+    <div class="page"> <!-- Page de séléction -->
+        <h2> Sélectionnez les sujets qui vous intéressent </h2> <!-- Texte pour indiquer la sélection -->
         <form>
-            <div class="checkboxes">
+            <div class="checkboxes"> <!-- Section pour les cases à cocher situé en haut -->
             
-                <div class="cases">
-                    <input type="checkbox" id="cb1" name="check1" />
-                    <label for="cb1"> <img id="cineIMG" src="img/cinema.png">  <h3>Cinema</h3> </label>
+                <div class="cases"> <!-- Case à cocher pour le cinéma -->
+                    <input type="checkbox" id="cb1" name="check1" /> <!-- Type, identifiant et nom de la case-->
+                    <label for="cb1"> <img id="cineIMG" src="img/cinema.png">  <h3>Cinema</h3> </label> <!-- Son contenu -->
                 </div>
 
-                <div class="cases">
+                <div class="cases"> <!-- Case à cocher pour la technologie -->
                     <input type="checkbox" id="cb2" name="check2" />
                     <label for="cb2"> <img id="technologyIMG" src="img/technologie.png"> <h3> Technologie </h3></label>
                 </div>
 
-                <div class="cases">            
+                <div class="cases"> <!-- Case à cocher pour la politique -->            
                     <input type="checkbox" id="cb3" name="check3" />
                     <label for="cb3"> <img id="politicsIMG" src="img/politique.png"> <h3> Politique</h3> </label>
                 </div> 
 
-                <div class="cases">                
+                <div class="cases"> <!-- Case à cocher pour la musique -->                
                     <input type="checkbox" id="cb4" name="check4" />
                     <label for="cb4"> <img id="musicIMG" src="img/musique.png"> <h3> Musique</h3> </label>
                 </div>
             </div>
             
-            <div class="checkboxes">
-                <div class="cases">
+            <div class="checkboxes"> <!-- Section pour les cases à cocher situé en bas -->
+                <div class="cases"> <!-- Case à cocher pour l'écologie -->
                     <input type="checkbox" id="cb5" name="check5" />
                     <label for="cb5"> <img id="ecologyIMG" src="img/ecologie.png"> <h3> Ecologie</h3> </label>
                 </div>
 
-                <div class="cases">
+                <div class="cases"> <!-- Case à cocher pour les faits divers -->
                     <input type="checkbox" id="cb6" name="check6" />
                     <label for="cb6"> <img id="fdIMG" src="img/faits_divers.png"> <h3> Faits divers</h3> </label>
                 </div>
 
-                <div class="cases">
+                <div class="cases"> <!-- Case à cocher pour le sport -->
                     <input type="checkbox" id="cb7" name="check7" />
                     <label for="cb7"> <img id="sportIMG" src="img/sports.png"><h3> Sports</h3> </label>
                 </div>
 
-                <div class="cases">
+                <div class="cases"> <!-- Case à cocher pour les jeux vidéo -->
                     <input type="checkbox" id="cb8" name="check8" />
                     <label for="cb8"> <img id="videogamesIMG" src="img/jeux_video.png"> <h3>Jeux vidéo</h3> </label>
                 </div>
             </div>   
 
         </form>
-
         
-        <button id="valid" type="submit">Valider</button>
+        <button id="valid" type="submit">Valider</button> <!-- Bouton de validation -->
 
     </div>
     
 </body>
 
-    <script>
+    <script> <!-- Script pour gérer la validation des sélections -->
         document.getElementById('valid').addEventListener('click', function(event) {
-            event.preventDefault();
+            event.preventDefault(); 
             
             const results = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
                            .map(checkbox => {
