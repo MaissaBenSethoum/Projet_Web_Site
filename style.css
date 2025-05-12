@@ -8,7 +8,7 @@
 
 #logoAcc{
     border-radius: 10px; /* Arrondit les coins de l'image */
-    max-width: 100px; /* Largeur maximale de l'image */
+    max-width: 140px; /* Largeur maximale de l'image */
     height: auto; /* Hauteur automatique pour maintenir le ratio d'aspect */
 }
 
