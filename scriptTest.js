@@ -18,7 +18,7 @@ const themeMap = {
   cb5: "Ecologie",
   cb6: "Faits divers",
   cb7: "Sports",
-  cb8: "Jeux vidÃ©o"
+  cb8: "Jeux vidéo"
 };
 
 function fetchNews(api, category) {
@@ -94,18 +94,19 @@ function genererArticles(articles) {
 
 const default_articles = [
   {
-    titre: "Municipales 2026 : la MÃ©tropole du Grand Paris, enjeu de lâ€™Ã©lection dans la capitale",
+    titre: "Municipales 2026 : la Métropole du Grand Paris, enjeu de l’élection dans la capitale",
     image: "img/image_test_1.avif",
     contenu: "Plusieurs candidats de gauche font de ce sujet un axe de leur campagne.",
     lien: "details.html"
   },
   {
-    titre: "DÃ©serts mÃ©dicaux : Â« Sâ€™il faut rÃ©ussir un entretien dâ€™embauche pour avoir un mÃ©decin, câ€™est grave Â»",
+    titre: "Déserts médicaux : « S’il faut réussir un entretien d’embauche pour avoir un médecin, c’est grave »",
     image: "img/image_test_2.avif",
-    contenu: "Des patients tÃ©moignent de leurs Â« parcours du combattant Â» pour trouver un rendez-vous.",
+    contenu: "Des patients témoignent de leurs « parcours du combattant » pour trouver un rendez-vous.",
     lien: "details.html"
   }
 ];
+
 
 function fetchArticlesForThemes(selectedThemes) {
   let fetchPromises = [];
