@@ -5,9 +5,18 @@ const apiKeys = {
 };
 
 const apiUrls = {
-  GNews: (category, apiKey) => `https://gnews.io/api/v4/search?q=${category}&lang=fr&max=5&token=${apiKey}`,
-  NewsApi: (category, apiKey) => `https://newsapi.org/v2/top-headlines?q=${category}&language=fr&pageSize=1&apiKey=${apiKey}`,
-  MediaStack: (category, apiKey) => `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${category}&languages=fr&sortBy=popularity&limit=3`
+  GNews: (category_list, apiKey) => {
+    const query = category_list.join(' OR '); // GNews supporte l'opérateur OR
+    return `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=fr&max=20&token=${apiKey}`;
+  },
+  NewsApi: (category_list, apiKey) => {
+    const query = category_list.join(' OR '); // NewsAPI accepte aussi une requête simple
+    return `https://newsapi.org/v2/top-headlines?q=${encodeURIComponent(query)}&language=fr&pageSize=1&apiKey=${apiKey}`;
+  },
+  MediaStack: (category_list, apiKey) => {
+    const query = category_list.join(','); // keywords supporte la virgule
+    return `https://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${encodeURIComponent(query)}&languages=fr&sort=popularity&limit=3`;
+  }
 };
 
 const themeMap = {
@@ -21,8 +30,16 @@ const themeMap = {
   cb8: "Jeux vidéo"
 };
 
-function fetchNews(api, category) {
-  const url = apiUrls[api](category, apiKeys[api]);
+function fetchNews(api, category_list) {
+  //Rajoute " " autour de chaque catégorie si elle contient un espace : exemple Fait Divers devient "Fait Divers"
+  nested_category_list = category_list.map(category => {
+    if (category.includes(" ")) {
+      return `(${category})`;
+    } else {
+      return category;
+    }
+  });
+  const url = apiUrls[api](nested_category_list, apiKeys[api]);
 
   return fetch(url)
     .then(response => response.json())
@@ -34,10 +51,10 @@ function fetchNews(api, category) {
         articles = data.data || []; 
       }
       console.log(data);
-      return articles.map(article => ({ ...article, theme: category }));
+      return articles.map(article => ({ ...article, theme: category_list[0] }));
     })
     .catch(error => {
-      console.error(`Erreur avec ${api} pour ${category} :`, error);
+      console.error(`Erreur avec ${api} pour ${category_list.join(',')} :`, error);
       return [];
     });
 }
@@ -119,11 +136,9 @@ function shuffleArray(array) {
 function fetchArticlesForThemes(selectedThemes) {
   let fetchPromises = [];
 
-  selectedThemes.forEach(theme => {
     ['GNews', 'NewsApi', 'MediaStack'].forEach(api => {
-      fetchPromises.push(fetchNews(api, theme));
+      fetchPromises.push(fetchNews(api, selectedThemes));
     });
-  });
 
   Promise.all(fetchPromises).then(results => {
     const seenTitles = new Set();
@@ -132,34 +147,34 @@ function fetchArticlesForThemes(selectedThemes) {
       if (!title || seenTitles.has(title)) return false;
       seenTitles.add(title);
       return true;
-    });   
+    });
+
+    console.log("allArticles", allArticles);
 
     allArticles = shuffleArray(allArticles); 
 
     genererArticles(allArticles);
 
-    const SIDEBAR_ARTICLE_LIMIT = 1; 
 
-    const sidebarThemes = themesNonChoisieAleatoire(selectedThemes);
-    const sidebarFetches = sidebarThemes.map(theme =>
-      fetchNews('GNews', theme).then(articles => {
-        return articles
-          .filter(article => article.title || article.titre)
-          .slice(0, SIDEBAR_ARTICLE_LIMIT)
-          .map(article => ({
-            titre: article.title || article.titre,
-            contenu: article.description || article.contenu || "Aucune description.",
-            lien: article.url || article.lien || "#"
-          }));
-      })
-    );
+    const SIDEBAR_ARTICLE_LIMIT = 2; 
 
-    Promise.all(sidebarFetches).then(nestedResults => {
-      const sidebarArticles = nestedResults.flat().filter(article => article);
+    const sidebarThemes = themesNonChoisieAleatoire(selectedThemes); //Renvoie une liste de deux thèmes non choisis
+    const sidebarFetches = fetchNews('GNews', sidebarThemes);
+    sidebarFetches.then(articles => {
+      const sidebarArticles = articles
+        .filter(article => article.title || article.titre)
+        .slice(0, SIDEBAR_ARTICLE_LIMIT)
+        .map(article => ({
+          titre: article.title || article.titre,
+          contenu: article.description || article.contenu || "Aucune description.",
+          lien: article.url || article.lien || "#"
+        }));
+    
       updateSidebarWithTheme(sidebarThemes, sidebarArticles);
     });
   });
 }
+
 
 function themesNonChoisieAleatoire(selectedThemes) {
   const allThemes = Object.values(themeMap);
@@ -180,7 +195,7 @@ function themesNonChoisieAleatoire(selectedThemes) {
   }
 
   // Cas 3 : Deux ou plus non sélectionnés → en prendre deux parmi ceux-là
-  console.log("Deux ou plus non sélectionnés, on en prend deux parmi ceux-là.");
+  //console.log("Deux ou plus non sélectionnés, on en prend deux parmi ceux-là.");
   const shuffled = unselected.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, 2);
 }
@@ -223,10 +238,3 @@ window.onload = function () {
   renderThemes(selectedThemes, "selected-themes");
   fetchArticlesForThemes(selectedThemes);
 };
-
-
-
-
-
-
-
