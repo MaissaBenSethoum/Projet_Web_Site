@@ -32,7 +32,7 @@
     background: white; /* Couleur de fond blanche */
 }
 
-.loginSec{
+#loginSec{
     display: grid; /* Grille pour la section d'incription/connection */
     place-items: center; /* Centre le contenu dans la grille */
     justify-content: center; /* Justifie le contenu au centre */
