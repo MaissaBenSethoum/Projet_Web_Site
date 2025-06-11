@@ -153,6 +153,12 @@ function fetchArticlesForThemes(selectedThemes) {
 
     allArticles = shuffleArray(allArticles); 
 
+    if (allArticles.length === 0) {
+      console.warn("Aucun article trouvé pour les thèmes sélectionnés. Affichage des articles par défaut.");
+      alert("Aucun article trouvé pour les thèmes sélectionnés. Affichage des articles par défaut.");
+      allArticles = default_articles;
+    }
+
     genererArticles(allArticles);
 
 
@@ -169,7 +175,11 @@ function fetchArticlesForThemes(selectedThemes) {
           contenu: article.description || article.contenu || "Aucune description.",
           lien: article.url || article.lien || "#"
         }));
-    
+      if (sidebarArticles.length === 0) {
+        console.warn("Aucun article trouvé pour les thèmes de la sidebar. Affichage des articles par défaut.");
+        alert("Aucun article trouvé pour les thèmes de la sidebar. Affichage des articles par défaut.");
+        sidebarArticles.push(...default_articles.slice(0, SIDEBAR_ARTICLE_LIMIT));
+      }
       updateSidebarWithTheme(sidebarThemes, sidebarArticles);
     });
   });
